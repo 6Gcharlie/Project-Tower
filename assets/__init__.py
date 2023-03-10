@@ -12,3 +12,4 @@ from .scripts import Cube
 # - Game loops
 from .loops import test_environment
 from .loops import splashscreen
+from .loops import platformer
