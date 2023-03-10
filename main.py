@@ -2,8 +2,9 @@
 main.py is the executable for the game, run this to play the game!
 """
 # - Module imports for the game
+import sys
 import pygame
-from assets import Application, test_environment, splashscreen
+from assets import Application, test_environment, splashscreen, platformer
 
 # - Initialise modules
 pygame.font.init()
@@ -21,7 +22,7 @@ application_attributes = {
     'clock':         pygame.time.Clock(),
     'fullscreen':    False,
     'fps':           60,
-    'loop':          'splashscreen',
+    'loop':          'platformer',
     'tick':          'NA',
     'path':          'assets/original/',
     'tex_id':        None,
@@ -33,12 +34,14 @@ application_attributes = {
 
 # - Create game object
 game = Application(application_attributes, False, False)
-game.set_game_surface('Project V')
+game.set_game_surface('Project Tower')
 
 # - Main application loop
 if __name__ == '__main__':
     while game.running:
         match game.loop:
+            case 'platformer':
+                platformer(game)
             case 'splashscreen':
                 splashscreen(game)
             case 'window test':
@@ -47,3 +50,4 @@ if __name__ == '__main__':
                 game.set_loop('window test')
 
     pygame.display.quit()
+    sys.exit()
